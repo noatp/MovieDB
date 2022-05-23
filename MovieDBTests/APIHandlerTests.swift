@@ -18,10 +18,10 @@ class APIHandlerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testGetData(){
+    func testGetDiscoverMovieList(){
         let expectation = expectation(description: "Fetch movie list")
         var movieList: [Movie] = []
-        APIHandler.shared.getData { receivedMovieList, error in
+        APIHandler.shared.getDiscoverMovieList { receivedMovieList, error in
             if let error = error {
                 print("error: \(error)")
             }
@@ -33,6 +33,23 @@ class APIHandlerTests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
         XCTAssertTrue(!movieList.isEmpty)
         XCTAssertTrue(movieList.count == 20)
+    }
+    
+    func testGetMovieDetail(){
+        let expectation = expectation(description: "Fetch movie detail")
+        var movie: Movie? = nil
+        APIHandler.shared.getMovieDetail(movieId: 752623) { receivedMovie, error in
+            if let error = error {
+                print("error: \(error)")
+            }
+            else if let receivedMovie = receivedMovie {
+                movie = receivedMovie
+                expectation.fulfill()
+            }
+        }
+        wait(for: [expectation], timeout: 10.0)
+        XCTAssertNotNil(movie)
+        XCTAssertEqual(movie?.title, "The Lost City")
     }
 
     func testPerformanceExample() throws {

@@ -13,7 +13,7 @@ class HomeViewModel{
     private var error: Error?
     
     func getMovieList(completionHandler: @escaping (_ success: Bool) -> Void){
-        APIHandler.shared.getData { receivedMovieList, error in
+        APIHandler.shared.getDiscoverMovieList { receivedMovieList, error in
             if let error = error {
                 self.error = error
                 completionHandler(false)
@@ -30,21 +30,13 @@ class HomeViewModel{
         return movieList.count
     }
     
-    func movieTitleAtRow(_ index: Int) -> String{
-        return movieList[index].title
-    }
-    
-    func moviePopularityAtRow(_ index: Int) -> String{
-        return String(movieList[index].popularity)
-    }
-    
-    func movieReleaseYearAtRow(_ index: Int) -> String{
-        return movieList[index].releaseDate
-    }
-    
     func movieThumbnailURLAtRow(_ index: Int) -> URL{
-        let urlString = imageBaseUrl + movieList[index].backdropPath
+        let urlString = imageBaseUrl + movieList[index].posterPath
         return URL(string: urlString)!
+    }
+    
+    func movieAtRow(_ index: Int) -> Movie{
+        return movieList[index]
     }
     
     func errorMessage() -> String?{

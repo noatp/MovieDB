@@ -47,12 +47,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewOutlet.dequeueReusableCell(withIdentifier: "movieCell") as? MovieTableViewCell ?? MovieTableViewCell()
         
-        let rowIndex = indexPath.row
-        cell.lblTitleOutlet.text = homeViewModel.movieTitleAtRow(rowIndex)
-        cell.lblPopularityOutlet.text = homeViewModel.moviePopularityAtRow(rowIndex)
-        cell.lblReleaseYearOutlet.text = homeViewModel.movieReleaseYearAtRow(rowIndex)
-        cell.imageViewOutlet.kf.setImage(with: homeViewModel.movieThumbnailURLAtRow(rowIndex))
+        let movie = homeViewModel.movieAtRow(indexPath.row)
+        
+        cell.lblTitleOutlet.text = movie.title
+        cell.lblPopularityOutlet.text = String(movie.popularity)
+        cell.lblReleaseYearOutlet.text = movie.releaseDate
+        cell.imageViewOutlet.kf.setImage(with: homeViewModel.movieThumbnailURLAtRow(indexPath.row))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController ?? DetailViewController()
+        vc.movie = homeViewModel.movieAtRow(indexPath.row)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
