@@ -34,6 +34,19 @@ class HomeViewModel{
         return movieList[index].title
     }
     
+    func moviePopularityAtRow(_ index: Int) -> String{
+        return String(movieList[index].popularity)
+    }
+    
+    func movieReleaseYearAtRow(_ index: Int) -> String{
+        return movieList[index].releaseDate
+    }
+    
+    func movieThumbnailURLAtRow(_ index: Int) -> URL{
+        let urlString = imageBaseUrl + movieList[index].backdropPath
+        return URL(string: urlString)!
+    }
+    
     func errorMessage() -> String?{
         return error?.localizedDescription
     }
