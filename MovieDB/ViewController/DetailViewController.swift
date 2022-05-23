@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
     @IBOutlet var imageViewOutlet: UIImageView!
     @IBOutlet var lblTitleOutlet: UILabel!
     @IBOutlet var lblPopularityOutlet: UILabel!
