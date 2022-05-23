@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeViewController: UIViewController {
 
@@ -16,6 +17,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        tableViewOutlet.register(.init(nibName: "MovieTableViewCell", bundle: .main), forCellReuseIdentifier: "movieCell")
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
         homeViewModel.getMovieList { success in
@@ -43,13 +45,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableViewOutlet.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
+        let cell = tableViewOutlet.dequeueReusableCell(withIdentifier: "movieCell") as? MovieTableViewCell ?? MovieTableViewCell()
         
-        cell.textLabel?.text = homeViewModel.movieTitleAtRow(indexPath.row)
-        
+        let rowIndex = indexPath.row
+        cell.lblTitleOutlet.text = homeViewModel.movieTitleAtRow(rowIndex)
+        cell.lblPopularityOutlet.text = homeViewModel.moviePopularityAtRow(rowIndex)
+        cell.lblReleaseYearOutlet.text = homeViewModel.movieReleaseYearAtRow(rowIndex)
+        cell.imageViewOutlet.kf.setImage(with: homeViewModel.movieThumbnailURLAtRow(rowIndex))
         return cell
     }
-    
-    
 }
 

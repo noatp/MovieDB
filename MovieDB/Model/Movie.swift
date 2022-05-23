@@ -21,6 +21,9 @@ struct FetchResult: Codable {
 }
 
 // MARK: - Movie
+
+//need thumbnail, title, popularity score, release year
+//if available: overview, run time, link to homepace
 struct Movie: Codable {
     let adult: Bool
     let backdropPath: String
