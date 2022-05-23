@@ -31,10 +31,10 @@ class DetailViewController: UIViewController {
                 if success{
                     let movieDetail = self.detailViewModel.movieDetail()
                     self.lblTitleOutlet.text = movieDetail.title
-                    self.lblPopularityOutlet.text = String(movieDetail.popularity)
-                    self.lblReleaseDateOutlet.text = movieDetail.releaseDate
-                    self.lblOverviewOutlet.text = movieDetail.overview
-                    self.lblRuntimeOutlet.text = String(movieDetail.runtime ?? -1)
+                    self.lblPopularityOutlet.text = "Popularity score: \(movieDetail.popularity)"
+                    self.lblReleaseDateOutlet.text = "Release date: \(movieDetail.releaseDate)"
+                    self.lblOverviewOutlet.text = "Overview: \n\(movieDetail.overview)"
+                    self.lblRuntimeOutlet.text = "Runtime: \(movieDetail.runtime ?? -1) minutes"
                     self.lblLinkOutlet.text = movieDetail.homepage
                     self.imageViewOutlet.kf.setImage(with: self.detailViewModel.movieBackdropURL())
                 }
