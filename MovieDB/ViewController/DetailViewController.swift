@@ -17,16 +17,40 @@ class DetailViewController: UIViewController {
     @IBOutlet var lblRuntimeOutlet: UILabel!
     @IBOutlet var lblLinkOutlet: UILabel!
     
-    var movie: Movie?
+    var movieId: Int?
+    private let detailViewModel = DetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        lblTitleOutlet.text = movie?.title
-//        lblPopularityOutlet.text = movie?.popularity
-//        lblReleaseDateOutlet.text = movie?.releaseDate
-//        lblOverviewOutlet.text = movie?.overview
-//        lblRuntimeOutlet.text = movie.
-        // Do any additional setup after loading the view.
+        guard let movieId = movieId else {
+            return
+        }
+
+        detailViewModel.getMovieDetailWithId(movieId) { success in
+            DispatchQueue.main.async {
+                if success{
+                    let movieDetail = self.detailViewModel.movieDetail()
+                    self.lblTitleOutlet.text = movieDetail.title
+                    self.lblPopularityOutlet.text = String(movieDetail.popularity)
+                    self.lblReleaseDateOutlet.text = movieDetail.releaseDate
+                    self.lblOverviewOutlet.text = movieDetail.overview
+                    self.lblRuntimeOutlet.text = String(movieDetail.runtime ?? -1)
+                    self.lblLinkOutlet.text = movieDetail.homepage
+                    self.imageViewOutlet.kf.setImage(with: self.detailViewModel.movieBackdropURL())
+                }
+                else{
+                    let uiac = UIAlertController(
+                        title: "Error",
+                        message: self.detailViewModel.errorMessage()!,
+                        preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel)
+                    uiac.addAction(ok)
+                    self.present(uiac, animated: true)
+                }
+            }
+            
+        }
+
     }
     
 

@@ -58,7 +58,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController ?? DetailViewController()
-        vc.movie = homeViewModel.movieAtRow(indexPath.row)
+        vc.movieId = homeViewModel.movieAtRow(indexPath.row).id
         navigationController?.pushViewController(vc, animated: true)
     }
 }

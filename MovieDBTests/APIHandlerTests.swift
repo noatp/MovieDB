@@ -50,6 +50,8 @@ class APIHandlerTests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
         XCTAssertNotNil(movie)
         XCTAssertEqual(movie?.title, "The Lost City")
+        XCTAssertNotNil(movie?.runtime)
+        XCTAssertNotNil(movie?.homepage)
     }
 
     func testPerformanceExample() throws {
