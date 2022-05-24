@@ -9,27 +9,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="135" id="KGk-i7-Jjw" customClass="MovieTableViewCell" customModule="MovieDB" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="224" height="135"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="MovieTableViewCell" customModule="MovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="224" height="135"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="382" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0l-sh-A6k">
-                        <rect key="frame" x="105" y="5" width="46.5" height="30"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0l-sh-A6k">
+                        <rect key="frame" x="105" y="5" width="272" height="17"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popularity score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYL-2j-Uc8">
-                        <rect key="frame" x="105" y="40" width="85.5" height="13.5"/>
+                        <rect key="frame" x="105" y="52" width="85.5" height="13.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSW-Z6-XmI">
-                        <rect key="frame" x="105" y="58.5" width="67" height="13.5"/>
+                        <rect key="frame" x="105" y="70.5" width="67" height="13.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -47,11 +47,12 @@
                     <constraint firstItem="jSW-Z6-XmI" firstAttribute="leading" secondItem="dM7-DG-7GM" secondAttribute="trailing" constant="5" id="2pJ-ar-Vbe"/>
                     <constraint firstItem="EYL-2j-Uc8" firstAttribute="leading" secondItem="dM7-DG-7GM" secondAttribute="trailing" constant="5" id="3An-Xa-WGj"/>
                     <constraint firstItem="V0l-sh-A6k" firstAttribute="leading" secondItem="dM7-DG-7GM" secondAttribute="trailing" constant="5" id="6Xh-Bp-Y1J"/>
-                    <constraint firstItem="EYL-2j-Uc8" firstAttribute="top" secondItem="V0l-sh-A6k" secondAttribute="bottom" constant="5" id="O9N-ha-Hdc"/>
+                    <constraint firstItem="jSW-Z6-XmI" firstAttribute="top" secondItem="EYL-2j-Uc8" secondAttribute="bottom" constant="5" id="K7S-a4-N0C"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="jSW-Z6-XmI" secondAttribute="bottom" constant="5" id="Q30-rH-nUf"/>
                     <constraint firstItem="dM7-DG-7GM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="RkM-du-GaC"/>
                     <constraint firstItem="dM7-DG-7GM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UuB-X0-3Ux"/>
                     <constraint firstAttribute="bottom" secondItem="dM7-DG-7GM" secondAttribute="bottom" id="UxE-BE-GPr"/>
-                    <constraint firstItem="jSW-Z6-XmI" firstAttribute="top" secondItem="EYL-2j-Uc8" secondAttribute="bottom" constant="5" id="pi6-qq-L8u"/>
+                    <constraint firstAttribute="trailing" secondItem="V0l-sh-A6k" secondAttribute="trailing" constant="5" id="eWt-x4-HAL"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -61,7 +62,7 @@
                 <outlet property="lblReleaseYearOutlet" destination="jSW-Z6-XmI" id="yaC-9e-Ccr"/>
                 <outlet property="lblTitleOutlet" destination="V0l-sh-A6k" id="IDa-wv-OJo"/>
             </connections>
-            <point key="canvasLocation" x="68.115942028985515" y="25.78125"/>
+            <point key="canvasLocation" x="437.68115942028987" y="-16.071428571428569"/>
         </tableViewCell>
     </objects>
 </document>
