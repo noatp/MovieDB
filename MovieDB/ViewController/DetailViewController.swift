@@ -8,11 +8,49 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
+    @IBOutlet var imageViewOutlet: UIImageView!
+    @IBOutlet var lblTitleOutlet: UILabel!
+    @IBOutlet var lblPopularityOutlet: UILabel!
+    @IBOutlet var lblReleaseDateOutlet: UILabel!
+    @IBOutlet var lblOverviewOutlet: UILabel!
+    @IBOutlet var lblRuntimeOutlet: UILabel!
+    @IBOutlet var lblLinkOutlet: UILabel!
+    
+    var movieId: Int?
+    private let detailViewModel = DetailViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let movieId = movieId else {
+            return
+        }
 
-        // Do any additional setup after loading the view.
+        detailViewModel.getMovieDetailWithId(movieId) { success in
+            DispatchQueue.main.async {
+                if success{
+                    let movieDetail = self.detailViewModel.movieDetail()
+                    self.lblTitleOutlet.text = movieDetail.title
+                    self.lblPopularityOutlet.text = "Popularity score: \(movieDetail.popularity)"
+                    self.lblReleaseDateOutlet.text = "Release date: \(movieDetail.releaseDate)"
+                    self.lblOverviewOutlet.text = "Overview: \n\(movieDetail.overview)"
+                    self.lblRuntimeOutlet.text = "Runtime: \(movieDetail.runtime ?? -1) minutes"
+                    self.lblLinkOutlet.text = movieDetail.homepage
+                    self.imageViewOutlet.kf.setImage(with: self.detailViewModel.movieBackdropURL())
+                }
+                else{
+                    let uiac = UIAlertController(
+                        title: "Error",
+                        message: self.detailViewModel.errorMessage()!,
+                        preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel)
+                    uiac.addAction(ok)
+                    self.present(uiac, animated: true)
+                }
+            }
+            
+        }
+
     }
     
 

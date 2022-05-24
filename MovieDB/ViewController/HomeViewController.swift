@@ -21,20 +21,7 @@ class HomeViewController: UIViewController {
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
         homeViewModel.getMovieList { success in
-            DispatchQueue.main.async {
-                if success{
-                    self.tableViewOutlet.reloadData()
-                }
-                else{
-                    let uiac = UIAlertController(
-                        title: "Error",
-                        message: self.homeViewModel.errorMessage()!,
-                        preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .cancel)
-                    uiac.addAction(ok)
-                    self.present(uiac, animated: true)
-                }
-            }
+            self.updateTableData(success: success)
         }
     }
 }
@@ -47,12 +34,39 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewOutlet.dequeueReusableCell(withIdentifier: "movieCell") as? MovieTableViewCell ?? MovieTableViewCell()
         
-        let rowIndex = indexPath.row
-        cell.lblTitleOutlet.text = homeViewModel.movieTitleAtRow(rowIndex)
-        cell.lblPopularityOutlet.text = homeViewModel.moviePopularityAtRow(rowIndex)
-        cell.lblReleaseYearOutlet.text = homeViewModel.movieReleaseYearAtRow(rowIndex)
-        cell.imageViewOutlet.kf.setImage(with: homeViewModel.movieThumbnailURLAtRow(rowIndex))
+        let movie = homeViewModel.movieAtRow(indexPath.row) { success in
+            self.updateTableData(success: success)
+        }
+        
+        cell.lblTitleOutlet.text = movie.title
+        cell.lblPopularityOutlet.text = "Popularity score: \(movie.popularity)"
+        cell.lblReleaseYearOutlet.text = "Release year: \(homeViewModel.movieReleaseYearAt(indexPath.row))"
+        cell.imageViewOutlet.kf.setImage(with: homeViewModel.movieThumbnailURLAtRow(indexPath.row))
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController ?? DetailViewController()
+        vc.movieId = homeViewModel.movieAtRow(indexPath.row).id
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func updateTableData(success: Bool){
+        DispatchQueue.main.async {
+            if success{
+                self.tableViewOutlet.reloadData()
+            }
+            else{
+                let uiac = UIAlertController(
+                    title: "Error",
+                    message: self.homeViewModel.errorMessage()!,
+                    preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .cancel)
+                uiac.addAction(ok)
+                self.present(uiac, animated: true)
+            }
+        }
     }
 }
 
