@@ -21,12 +21,12 @@ class APIHandlerTests: XCTestCase {
     func testGetDiscoverMovieList(){
         let expectation = expectation(description: "Fetch movie list")
         var movieList: [Movie] = []
-        APIHandler.shared.getDiscoverMovieList { receivedMovieList, error in
+        APIHandler.shared.getDiscoverMovieList(page: 1) { receivedMoviePage, error in
             if let error = error {
                 print("error: \(error)")
             }
-            else if let receivedMovieList = receivedMovieList {
-                movieList = receivedMovieList
+            else if let receivedMoviePage = receivedMoviePage {
+                movieList = receivedMoviePage.results
                 expectation.fulfill()
             }
         }
@@ -52,13 +52,6 @@ class APIHandlerTests: XCTestCase {
         XCTAssertEqual(movie?.title, "The Lost City")
         XCTAssertNotNil(movie?.runtime)
         XCTAssertNotNil(movie?.homepage)
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 
 }
