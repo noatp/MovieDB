@@ -25,6 +25,8 @@
 		450B86DF283BF0D4004013E0 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 450B86DD283BF0D4004013E0 /* MovieTableViewCell.xib */; };
 		450B86E2283BF981004013E0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 450B86E1283BF981004013E0 /* Kingfisher */; };
 		450B86E4283C0DF5004013E0 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B86E3283C0DF5004013E0 /* DetailViewModel.swift */; };
+		450B873B283D3370004013E0 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B873A283D3370004013E0 /* HomeViewModelTests.swift */; };
+		450B873D283D33EC004013E0 /* DetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B873C283D33EC004013E0 /* DetailViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		450B86DC283BF0D4004013E0 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		450B86DD283BF0D4004013E0 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		450B86E3283C0DF5004013E0 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		450B873A283D3370004013E0 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		450B873C283D33EC004013E0 /* DetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +139,9 @@
 		450B86AB283BE0BC004013E0 /* MovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				450B873A283D3370004013E0 /* HomeViewModelTests.swift */,
 				450B86CF283BEA2B004013E0 /* APIHandlerTests.swift */,
+				450B873C283D33EC004013E0 /* DetailViewModelTests.swift */,
 			);
 			path = MovieDBTests;
 			sourceTree = "<group>";
@@ -350,6 +356,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				450B86D0283BEA2B004013E0 /* APIHandlerTests.swift in Sources */,
+				450B873B283D3370004013E0 /* HomeViewModelTests.swift in Sources */,
+				450B873D283D33EC004013E0 /* DetailViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
